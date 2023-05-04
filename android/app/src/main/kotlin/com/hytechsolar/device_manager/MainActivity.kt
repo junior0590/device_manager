@@ -1,0 +1,6 @@
+package com.hytechsolar.device_manager
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}

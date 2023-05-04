@@ -1,0 +1,3 @@
+class TransitionsSectionsData {
+  String? idsection;
+}

@@ -1,0 +1,19 @@
+{
+  "data": {
+    "devices": [
+      {
+        "device_id": "107272000000115151",
+        "name": "Iphone 7 P",
+        "platform_type": "Iphone",
+        "model": "SM-A536E",
+        "product_name": "SM-A536E",
+        "status": "Activo",
+        "announcement_id": "107272000000084579",
+        "created_at": "2022-11-16T12:45:07.000000Z",
+        "updated_at": "2022-11-16T12:45:07.000000Z"
+
+      }
+    ]
+  },
+  "status": 200
+}

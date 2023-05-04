@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>620005460717-94ga1mfk6mpp0lq6j1rmk28gt6r0omf8.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.620005460717-94ga1mfk6mpp0lq6j1rmk28gt6r0omf8</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD4QX4WDDsyXjXhBW5Ly_pUleUdfqd_WBc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>620005460717</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.hytechsolar.gizmo</string>
+	<key>PROJECT_ID</key>
+	<string>hytechgizmo</string>
+	<key>STORAGE_BUCKET</key>
+	<string>hytechgizmo.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:620005460717:ios:e68b400fdb7aa864fa9ae4</string>
+</dict>
+</plist>

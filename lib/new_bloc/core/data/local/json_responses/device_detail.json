@@ -1,0 +1,21 @@
+{
+  "data": {
+    "device_detail": {
+        "device_id": "1",
+        "name": "Carlos - Iphone 7 plus",
+        "used_device_space": "18.755829",
+        "model_name": "iPhone 7 Plus",
+        "model": "MN5T2LL",
+        "available_device_capacity": "109.24417",
+        "device_capacity": "128.0",
+        "device_name": "iPhone (3)",
+        "os_version": "15.4.1",
+        "imei": "359174079751343",
+        "location": "359174079751343",
+        "battery_level": "53.0",
+        "created_at": "2022-11-16T11:45:07.000000Z",
+        "updated_at": "2022-11-16T11:45:07.000000Z",
+      }
+  },
+  "status": 200
+}
