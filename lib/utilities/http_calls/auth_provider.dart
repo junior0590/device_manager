@@ -90,7 +90,7 @@ class AuthProvider {
         storage.setInt('userId', response.data.id!);
         storage.setString('userName', response.data.name.toString());
 
-        globaldata.userId = response.data.id;
+        globaldata.userId = response.data.id.toString();
         globaldata.userName = response.data.name.toString();
         globaldata.token = response.data.token!;
         storage.setBool("isLoggedIn", true);
@@ -125,19 +125,19 @@ class AuthProvider {
     }
   }
 
-  sendMessage(String device_id, String announcement_id) async {
+  sendMessage(String device_id, String user_id) async {
 
     String currentToken = await getToken();
     Success? response;
-    Map<String, dynamic> body = {
-      "device_ids": [
-        device_id
-      ]
-    };
+    // Map<String, dynamic> body = {
+    //   "device_ids": [
+    //     device_id
+    //   ]
+    // };
 
     RestClient request = await AuthProvider.request("application/json;charset=UTF-8", currentToken);
     try {
-      response = await request.sendMessage(announcement_id, body);
+      response = await request.sendMessage(device_id, user_id);
     } on DioError catch (e) {
       print({"DioError response:", e.response});
       print({"DioError error:", e.error});
@@ -150,13 +150,13 @@ class AuthProvider {
     return response;
   }
 
-  sendAction(String device_id, String actionName) async {
+  sendAction(String device_id, String actionName, String user_id,  Map<String, dynamic> body) async {
     String currentToken = await getToken();
     Success? response;
 
     RestClient request = await AuthProvider.request("application/json;charset=UTF-8", currentToken);
     try {
-      response = await request.sendAction(device_id, actionName);
+      response = await request.sendAction(device_id, actionName, user_id, body);
     } on DioError catch (e) {
       print({"DioError response:", e.response});
       print({"DioError error:", e.error});
@@ -169,13 +169,13 @@ class AuthProvider {
     return response;
   }
 
-  getLocation(String device_id) async {
+  getLocation(String device_id, String user_id) async {
     String currentToken = await getToken();
     MapRecords? response;
 
     RestClient request = await AuthProvider.request("application/json;charset=UTF-8", currentToken);
     try {
-      response = await request.getLocation(device_id);
+      response = await request.getLocation(device_id, user_id);
     } on DioError catch (e) {
       print({"DioError response:", e.response});
       print({"DioError error:", e.error});

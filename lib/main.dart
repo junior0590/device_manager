@@ -122,7 +122,7 @@ class _MyAppState extends State<MyApp> {
     int? userId = storage.getInt('userId');
 
     if (token != null) {
-      globaldata.userId = await storage.getInt('userId');
+      globaldata.userId = await storage.getString('userId')!;
       globaldata.userName = await storage.getString('userName')!;
       globaldata.token = token;
       print("UserID: " + globaldata.userId.toString());

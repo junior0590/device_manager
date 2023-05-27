@@ -18,21 +18,24 @@ abstract class RestClient {
   Future<ResponseData> loginUser(@Body() User user);
 
 
-  @POST(globaldata.baseUrl+"/api/v1/mdm/announcements/{announcement_id}/devices")
+  @POST(globaldata.baseUrlHemaxvisoft+"/webApi2/api/custom/devices/sendMessage/{device_id}/{user_id}")
   Future<Success> sendMessage(
-    @Path("announcement_id") String announcement_id,
-    @Body() Map<String, dynamic> body,
+    @Path("device_id") String device_id,
+    @Path("user_id") String user_id,
   );
 
-  @POST(globaldata.baseUrl+"/api/v1/mdm/devices/{device_id}/actions/{action_name}")
+  @POST(globaldata.baseUrlHemaxvisoft+"/webApi2/api/custom/devices/PostAction/{device_id}/{action_name}/{user_id}")
   Future<Success> sendAction(
       @Path("device_id") String device_id,
       @Path("action_name") String action_name,
+      @Path("user_id") String user_id,
+      @Body() Map<String, dynamic> body,
       );
 
-  @GET(globaldata.baseUrl+"/api/v1/mdm/devices/{device_id}/locations")
+  @GET(globaldata.baseUrlHemaxvisoft+"/webApi2/api/custom/devices/GetLocations/{device_id}/{user_id}")
   Future<MapRecords> getLocation(
       @Path("device_id") String device_id,
+      @Path("user_id") String user_id,
       );
 
 }

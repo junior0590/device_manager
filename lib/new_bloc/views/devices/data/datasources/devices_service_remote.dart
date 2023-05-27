@@ -12,6 +12,6 @@ class DevicesService {
       _devicesRepository.getDevices(body);
 
   Future<HttpResponse<DevicesDetailModel>> getDevicesDetail(
-          String device_id) =>
-      _devicesRepository.getDeviceDetail(device_id);
+          String device_id, String user_id) =>
+      _devicesRepository.getDeviceDetail(device_id, user_id);
 }

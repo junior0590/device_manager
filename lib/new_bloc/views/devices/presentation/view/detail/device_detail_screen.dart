@@ -288,22 +288,17 @@ class _DeviceDetailScreenState extends State<DeviceDetailScreen>
                                             label: Row(
                                               children: [
                                                 Text(
-                                                    state.device_detail!
-                                                            .status ??
-                                                        "",
+                                                    "Activo",
                                                     style: TextStyle(
                                                         color: globaldata
                                                             .blackBackground1,
                                                         fontSize: 12)),
                                                 SizedBox(width: 5),
-                                                getIconStatus(state
-                                                        .device_detail!.status ??
-                                                    ""),
+                                                getIconStatus("Activo"),
                                               ],
                                             ),
                                             backgroundColor: getColorStatus(
-                                                state.device_detail!.status ??
-                                                    ""),
+                                                "Activo"),
                                             side: BorderSide(
                                                 color: globaldata
                                                     .blackBackground1),

@@ -44,7 +44,35 @@ class _RestClient implements RestClient {
 
   @override
   Future<Success> sendMessage(
-    announcement_id,
+    device_id,
+    user_id,
+  ) async {
+    const _extra = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{};
+    final _headers = <String, dynamic>{};
+    final _data = <String, dynamic>{};
+    final _result =
+        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Success>(Options(
+      method: 'POST',
+      headers: _headers,
+      extra: _extra,
+    )
+            .compose(
+              _dio.options,
+              'http://gsoftsolution.ddns.net/webApi2/api/custom/devices/sendMessage/${device_id}/${user_id}',
+              queryParameters: queryParameters,
+              data: _data,
+            )
+            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
+    final value = Success.fromJson(_result.data!);
+    return value;
+  }
+
+  @override
+  Future<Success> sendAction(
+    device_id,
+    action_name,
+    user_id,
     body,
   ) async {
     const _extra = <String, dynamic>{};
@@ -60,7 +88,7 @@ class _RestClient implements RestClient {
     )
             .compose(
               _dio.options,
-              'https://mdm.manageengine.com/api/v1/mdm/announcements/${announcement_id}/devices',
+              'http://gsoftsolution.ddns.net/webApi2/api/custom/devices/PostAction/${device_id}/${action_name}/${user_id}',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -70,33 +98,10 @@ class _RestClient implements RestClient {
   }
 
   @override
-  Future<Success> sendAction(
+  Future<MapRecords> getLocation(
     device_id,
-    action_name,
+    user_id,
   ) async {
-    const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
-    final _headers = <String, dynamic>{};
-    final _data = <String, dynamic>{};
-    final _result =
-        await _dio.fetch<Map<String, dynamic>>(_setStreamType<Success>(Options(
-      method: 'POST',
-      headers: _headers,
-      extra: _extra,
-    )
-            .compose(
-              _dio.options,
-              'https://mdm.manageengine.com/api/v1/mdm/devices/${device_id}/actions/${action_name}',
-              queryParameters: queryParameters,
-              data: _data,
-            )
-            .copyWith(baseUrl: baseUrl ?? _dio.options.baseUrl)));
-    final value = Success.fromJson(_result.data!);
-    return value;
-  }
-
-  @override
-  Future<MapRecords> getLocation(device_id) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -109,7 +114,7 @@ class _RestClient implements RestClient {
     )
             .compose(
               _dio.options,
-              'https://mdm.manageengine.com/api/v1/mdm/devices/${device_id}/locations',
+              'http://gsoftsolution.ddns.net/webApi2/api/custom/devices/GetLocations/${device_id}/${user_id}',
               queryParameters: queryParameters,
               data: _data,
             )

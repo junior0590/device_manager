@@ -1,5 +1,6 @@
 
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:animated_digit/animated_digit.dart';
 import 'package:flutter/material.dart';
@@ -263,16 +264,16 @@ class _DevicesDetailCardState extends State<DevicesDetailCard> {
                                         IconButton(onPressed: () async {
                                           Alert alert = getAlert();
                                           alert.show();
-                                          MapRecords mapData = await Provider.of<DeviceManagerProvider>(context, listen: false).getLocation(widget.deviceId!);
+                                          MapRecords mapData = await Provider.of<DeviceManagerProvider>(context, listen: false).getLocation(widget.deviceId!, globaldata.userId);
                                           //await Provider.of<DeviceManagerProvider>(context, listen: false).sendAction(widget.deviceId!, "fetch_location");
-
+                                          log(mapData.toJson().toString());
                                           alert.dismiss();
                                           bool res = await openMap(
-                                            double.parse(mapData.locations![0].latitude!),
-                                              double.parse(mapData.locations![0].longitude!),
+                                            double.parse(mapData.data![0].latitude!),
+                                              double.parse(mapData.data![0].longitude!),
                                           );
                                           if(!res){
-                                            MapsLauncher.launchCoordinates(double.parse(mapData.locations![0].latitude!), double.parse(mapData.locations![0].longitude!), 'Your selection is here');
+                                            MapsLauncher.launchCoordinates(double.parse(mapData.data![0].latitude!), double.parse(mapData.data![0].longitude!), 'Your selection is here');
                                             // MapData? result = await showDialog(context: context, builder: (context) => PlacePicker("AIzaSyAuHrKDWpQaSU7wuyfaJDZu4j4UKdmXAKc", localizationItem: LocalizationItem(
                                             //   unnamedLocation: "Selected Address",),
                                             //   displayLocation: LatLng(40.69772700, -73.52685300),
@@ -296,9 +297,13 @@ class _DevicesDetailCardState extends State<DevicesDetailCard> {
                                     child: Column(
                                       children: [
                                         IconButton(onPressed: () async {
+                                          Map<String, dynamic> body = {
+                                            "passcode":051015,
+                                            "lock_message":"Dispositivo Bloqueado, Contactar al administrador",
+                                          };
                                           Alert alert = getAlert();
                                           alert.show();
-                                          await Provider.of<DeviceManagerProvider>(context, listen: false).sendAction(widget.deviceId!, "enable_lost_mode");
+                                          await Provider.of<DeviceManagerProvider>(context, listen: false).sendAction(widget.deviceId!, "enable_lost_mode", globaldata.userId, body);
                                           alert.dismiss();
                                           showSnackBar(context, 'Operacion Completada!');
 
@@ -317,10 +322,11 @@ class _DevicesDetailCardState extends State<DevicesDetailCard> {
                                     child: Column(
                                       children: [
                                         IconButton(onPressed: () async {
+                                          Map<String, dynamic> body = {};
                                           Alert alert = getAlert();
                                           alert.show();
-                                          await Provider.of<DeviceManagerProvider>(context, listen: false).sendAction(widget.deviceId!, "disable_lost_mode");
-                                          await Provider.of<DeviceManagerProvider>(context, listen: false).sendAction(widget.deviceId!, "clear_passcode");
+                                          await Provider.of<DeviceManagerProvider>(context, listen: false).sendAction(widget.deviceId!, "disable_lost_mode", globaldata.userId, body);
+                                          await Provider.of<DeviceManagerProvider>(context, listen: false).sendAction(widget.deviceId!, "clear_passcode",globaldata.userId, body);
                                           alert.dismiss();
                                           showSnackBar(context, 'Operacion Completada!');
 
@@ -345,7 +351,7 @@ class _DevicesDetailCardState extends State<DevicesDetailCard> {
                                         IconButton(onPressed: () async {
                                           Alert alert = getAlert();
                                           alert.show();
-                                          await Provider.of<DeviceManagerProvider>(context, listen: false).sendMessage(widget.deviceId!, widget.announcement_id!);
+                                          await Provider.of<DeviceManagerProvider>(context, listen: false).sendMessage(widget.deviceId!, globaldata.userId);
                                           alert.dismiss();
                                           showSnackBar(context, 'Operacion Completada!');
                                         }, icon: Icon(Icons.notifications_active)),

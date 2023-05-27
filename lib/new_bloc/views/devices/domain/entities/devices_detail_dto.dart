@@ -13,7 +13,6 @@ class DevicesDetailDto extends Equatable {
   final String? os_version;
   final String? imei;
   final String? location;
-  final String? status;
   final String? battery_level;
 
   DevicesDetailDto({
@@ -28,7 +27,6 @@ class DevicesDetailDto extends Equatable {
     this.os_version,
     this.imei,
     this.location,
-    this.status,
     this.battery_level}
       );
 
@@ -44,7 +42,6 @@ class DevicesDetailDto extends Equatable {
     String? os_version,
     String? imei,
     String? location,
-    String? status,
     String? battery_level,
   }) {
     return DevicesDetailDto(
@@ -59,7 +56,6 @@ class DevicesDetailDto extends Equatable {
         os_version: os_version ?? this.os_version,
         imei: imei ?? this.imei,
         location: location ?? this.location,
-        status: status ?? this.status,
         battery_level: battery_level ?? this.battery_level,
     );
   }
@@ -77,7 +73,6 @@ class DevicesDetailDto extends Equatable {
     os_version,
     imei,
     location,
-    status,
     battery_level
   ];
 }

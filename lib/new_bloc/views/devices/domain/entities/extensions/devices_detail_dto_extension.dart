@@ -17,7 +17,6 @@ extension DevicesDetailInfoExtension on DevicesDetailInfo {
       os_version: os_version,
       imei: imei,
       location: location,
-      status: status,
       battery_level: battery_level
     );
   }

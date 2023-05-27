@@ -28,13 +28,14 @@ class GetDevicesDetail implements UseCase<DataState<DevicesDetailDto>, GetDevice
       bool hasConnection = true;
       // final httpResponse;
       if (hasConnection) {
-        AuthProvider aut = AuthProvider();
-        globaldata.token = await aut.getToken();
-        print("new token: "+globaldata.token);
-        injector<Dio>().options = DioFactory().updateToken(token: globaldata.token, baseUrl: globaldata.baseUrl);
+        // AuthProvider aut = AuthProvider();
+        // globaldata.token = await aut.getToken();
+        // print("new token: "+globaldata.token);
+        // injector<Dio>().options = DioFactory().updateToken(token: globaldata.token, baseUrl: globaldata.baseUrl);
 
         final httpResponse = await _devicesRepository.getDeviceDetail(
           params.device_id,
+          params.user_id,
         );
         if (httpResponse.response.statusCode == HttpStatus.ok) {
           return DataSuccess(httpResponse.data.devices!.toDevicesDetailDto());
@@ -65,6 +66,7 @@ class GetDevicesDetail implements UseCase<DataState<DevicesDetailDto>, GetDevice
 
 class GetDevicesDetailParams {
   final String device_id;
+  final String user_id;
 
-  GetDevicesDetailParams(this.device_id);
+  GetDevicesDetailParams(this.device_id, this.user_id);
 }

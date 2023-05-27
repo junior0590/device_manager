@@ -10,7 +10,7 @@ import '../services/entity/calendar/accesible_meetings_entity.dart';
 import '../services/entity/psegli_entity/pseg_form_entity.dart';
 import '../services/entity/tasks/task_sort_fields.dart';
 
-int? userId;
+String userId='';
 String userName = '';
 String fullName = '';
 String mobilePhone = '';

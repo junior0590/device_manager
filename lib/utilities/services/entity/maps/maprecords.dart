@@ -5,10 +5,10 @@ part 'maprecords.g.dart';
 @JsonSerializable()
 class MapRecords {
 
-  @JsonKey(name: "locations")
-  List<MapData>? locations;
+  @JsonKey(name: "data")
+  List<MapData>? data;
 
-  MapRecords({this.locations });
+  MapRecords({this.data });
 
   factory MapRecords.fromJson(Map<String, dynamic> json) => _$MapRecordsFromJson(json);
   Map<String, dynamic> toJson() => _$MapRecordsToJson(this);

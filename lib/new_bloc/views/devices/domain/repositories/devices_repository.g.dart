@@ -33,7 +33,7 @@ class _DevicesRepository implements DevicesRepository {
     )
             .compose(
               _dio.options,
-              'http://gsoftsolution.ddns.net/webApi/api/devices',
+              'http://gsoftsolution.ddns.net/webApi2/api/devices',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -44,7 +44,10 @@ class _DevicesRepository implements DevicesRepository {
   }
 
   @override
-  Future<HttpResponse<DevicesDetailModel>> getDeviceDetail(device_id) async {
+  Future<HttpResponse<DevicesDetailModel>> getDeviceDetail(
+    device_id,
+    user_id,
+  ) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
@@ -57,7 +60,7 @@ class _DevicesRepository implements DevicesRepository {
     )
             .compose(
               _dio.options,
-              'https://mdm.manageengine.com/api/v1/mdm/devices/${device_id}',
+              'http://gsoftsolution.ddns.net/webApi2/api/custom/devices/GetDeviceDetail/${device_id}/${user_id}',
               queryParameters: queryParameters,
               data: _data,
             )

@@ -123,7 +123,7 @@ class _VerificationScreen1State extends State<VerificationScreen1> {
                 setState(() {
                   clearText = true;
                 });
-                globaldata.userId = int.parse(verificationCode);
+                globaldata.userId = verificationCode;
                     Navigator.push(
                       context,
                       MaterialPageRoute(

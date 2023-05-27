@@ -20,7 +20,7 @@ class DevicesDetailCubit extends Cubit<DevicesDetailState> {
     emit(DevicesDetailState(status: DataStatus.LOADING, device_detail: DevicesDetailDto()));
     try {
       final deviceDetailList = await _getDeviceDetailUsecase.call(
-          params: GetDevicesDetailParams(globaldata.deviceID));
+          params: GetDevicesDetailParams(globaldata.deviceID, globaldata.userId));
 
       if (deviceDetailList.data != null) {
         emit(DevicesDetailState(status: DataStatus.COMPLETED, device_detail: deviceDetailList.data!));
@@ -36,7 +36,7 @@ class DevicesDetailCubit extends Cubit<DevicesDetailState> {
     emit(DevicesDetailState(status: DataStatus.LOADING, device_detail: DevicesDetailDto()));
     try {
       final tasksDetailList = await _getDeviceDetailUsecase.call(
-          params: GetDevicesDetailParams(globaldata.currentModule));
+          params: GetDevicesDetailParams(globaldata.deviceID, globaldata.userId));
 
       if (tasksDetailList.data != null) {
         emit(DevicesDetailState(status: DataStatus.COMPLETED, device_detail: tasksDetailList.data!));

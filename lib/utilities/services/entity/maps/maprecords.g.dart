@@ -7,14 +7,14 @@ part of 'maprecords.dart';
 // **************************************************************************
 
 MapRecords _$MapRecordsFromJson(Map<String, dynamic> json) => MapRecords(
-      locations: (json['locations'] as List<dynamic>?)
+      data: (json['data'] as List<dynamic>?)
           ?.map((e) => MapData.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
 Map<String, dynamic> _$MapRecordsToJson(MapRecords instance) =>
     <String, dynamic>{
-      'locations': instance.locations,
+      'data': instance.data,
     };
 
 MapData _$MapDataFromJson(Map<String, dynamic> json) => MapData(

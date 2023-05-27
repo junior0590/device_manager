@@ -12,7 +12,6 @@ class DevicesDetailInfo {
   String? os_version;
   String? imei;
   String? location;
-  String? status;
   String? battery_level;
 
   DevicesDetailInfo({
@@ -27,7 +26,6 @@ class DevicesDetailInfo {
     this.os_version,
     this.imei,
     this.location,
-    this.status,
     this.battery_level
   });
 
@@ -43,7 +41,6 @@ class DevicesDetailInfo {
     os_version: json['os_version'],
     imei: json['imei'],
     location: json['location'],
-    status: json['status'],
     battery_level: json['battery_level'],
   );
 
@@ -59,7 +56,6 @@ class DevicesDetailInfo {
     "os_version": os_version,
     "imei": imei,
     "location": location,
-    "status": status,
     "battery_level": battery_level,
   };
 }

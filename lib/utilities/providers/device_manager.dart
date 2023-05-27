@@ -19,23 +19,9 @@ class DeviceManagerProvider with ChangeNotifier {
   ProposalToolEntity? proposalRecords;
   ProposalEditResponse? proposalEditRecords;
 
-  Future<dynamic> sendMessage(String deviceId, String announcement_id) async {
+  Future<dynamic> sendMessage(String deviceId, String user_id) async {
 
-    Success? result = await httpCalls.sendMessage(deviceId, announcement_id);
-
-    if(result != null){
-      if (result.status == 200) {
-        return result;
-      } else {
-        print(result.status);
-        return result.status;
-      }
-    }
-  }
-
-  Future<dynamic> sendAction(String deviceId, String actionName) async {
-
-    Success? result = await httpCalls.sendAction(deviceId, actionName);
+    Success? result = await httpCalls.sendMessage(deviceId, user_id);
 
     if(result != null){
       if (result.status == 200) {
@@ -47,9 +33,23 @@ class DeviceManagerProvider with ChangeNotifier {
     }
   }
 
-  Future<dynamic> getLocation(String deviceId) async {
+  Future<dynamic> sendAction(String deviceId, String actionName, String user_id,  Map<String, dynamic> body) async {
 
-    MapRecords? result = await httpCalls.getLocation(deviceId);
+    Success? result = await httpCalls.sendAction(deviceId, actionName, user_id, body);
+
+    if(result != null){
+      if (result.status == 200) {
+        return result;
+      } else {
+        print(result.status);
+        return result.status;
+      }
+    }
+  }
+
+  Future<dynamic> getLocation(String deviceId, String user_id) async {
+
+    MapRecords? result = await httpCalls.getLocation(deviceId, user_id);
 
     return result;
   }

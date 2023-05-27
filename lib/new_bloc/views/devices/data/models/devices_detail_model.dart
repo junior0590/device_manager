@@ -9,14 +9,16 @@ class DevicesDetailModel {
 
   DevicesDetailModel.fromJson(dynamic json) {
     if (json != null) {
-      devices = DevicesDetailInfo.fromJson(json);
+      if (json['data'] != null) {
+        devices = DevicesDetailInfo.fromJson(json['data']);
+      }
     }
   }
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     if (devices != null) {
-      map['data']['device_detail'] =
+      map['data'] =
           devices?.toJson();
     }
     return map;

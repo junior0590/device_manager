@@ -10,13 +10,14 @@ part 'devices_repository.g.dart';
 @RestApi()
 abstract class DevicesRepository {
   factory DevicesRepository(Dio dio, {String? baseUrl}) = _DevicesRepository;
-  @POST(globaldata.baseUrlHemaxvisoft+"/webApi/api/devices")
+  @POST(globaldata.baseUrlHemaxvisoft+"/webApi2/api/devices")
   Future<HttpResponse<DevicesModel>> getDevices(
       @Body() Map<String, dynamic> body
       );
 
-  @GET(globaldata.baseUrl+"/api/v1/mdm/devices/{device_id}")
+  @GET(globaldata.baseUrlHemaxvisoft+"/webApi2/api/custom/devices/GetDeviceDetail/{device_id}/{user_id}")
   Future<HttpResponse<DevicesDetailModel>> getDeviceDetail(
       @Path('device_id') String device_id,
+      @Path('user_id') String user_id,
       );
 }
