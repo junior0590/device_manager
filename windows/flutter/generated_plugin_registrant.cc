@@ -7,7 +7,6 @@
 #include "generated_plugin_registrant.h"
 
 #include <app_links/app_links_plugin_c_api.h>
-#include <awesome_notifications/awesome_notifications_plugin_c_api.h>
 #include <connectivity_plus_windows/connectivity_plus_windows_plugin.h>
 #include <geolocator_windows/geolocator_windows.h>
 #include <maps_launcher/maps_launcher_plugin.h>
@@ -17,8 +16,6 @@
 void RegisterPlugins(flutter::PluginRegistry* registry) {
   AppLinksPluginCApiRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("AppLinksPluginCApi"));
-  AwesomeNotificationsPluginCApiRegisterWithRegistrar(
-      registry->GetRegistrarForPlugin("AwesomeNotificationsPluginCApi"));
   ConnectivityPlusWindowsPluginRegisterWithRegistrar(
       registry->GetRegistrarForPlugin("ConnectivityPlusWindowsPlugin"));
   GeolocatorWindowsRegisterWithRegistrar(

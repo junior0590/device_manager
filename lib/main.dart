@@ -58,10 +58,10 @@ void main() async {
   ErrorWidget.builder = (FlutterErrorDetails details) {
     return ErrorDetail(details: details);
   };
-  await NotificationController.initializeLocalNotifications();
+  //await NotificationController.initializeLocalNotifications();
 
-  NotificationController.initializeLocalNotifications();
-  NotificationController.startListeningNotificationEvents();
+  //NotificationController.initializeLocalNotifications();
+  //NotificationController.startListeningNotificationEvents();
 
   await EasyLocalization.ensureInitialized();
 

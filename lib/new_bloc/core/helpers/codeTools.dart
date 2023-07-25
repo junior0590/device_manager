@@ -769,8 +769,8 @@ void initialStreamFirebase(String userID) {
         } else {
           print(element.id);
           //show notification
-          showNotification(element.get("title"), element.get("message"),
-              element.id, element.get("image_link"), element.get("type"));
+          // showNotification(element.get("title"), element.get("message"),
+          //     element.id, element.get("image_link"), element.get("type"));
 
           //add notification in the Notification Center
           Provider.of<Notifications>(globaldata.mainContext, listen: false)
@@ -790,10 +790,10 @@ void initialStreamFirebase(String userID) {
   );
 }
 
-Future<void> showNotification(
-    String title, String body, String id, String imageLink, String type) async {
-  NotificationController.createNewNotification(title, body, id, imageLink, type);
-}
+// Future<void> showNotification(
+//     String title, String body, String id, String imageLink, String type) async {
+//   NotificationController.createNewNotification(title, body, id, imageLink, type);
+// }
 
 writeLog(String text, String filename) async {
   final Directory directory = await getApplicationDocumentsDirectory();
