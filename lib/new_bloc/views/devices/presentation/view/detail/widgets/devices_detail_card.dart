@@ -4,6 +4,7 @@ import 'dart:developer';
 
 import 'package:animated_digit/animated_digit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:intl/intl.dart';
@@ -47,6 +48,7 @@ class DevicesDetailCard extends StatefulWidget {
 class _DevicesDetailCardState extends State<DevicesDetailCard> {
   double downloadPercentage = 0;
   bool isDownloading = false;
+  int unlockCode = 0;
   final GlobalKey<AnimatedListState> listKey = GlobalKey<AnimatedListState>();
   DropdownModel<ListItemData> listItem = DropdownModel<ListItemData>(
     selectedValue: 0,
@@ -142,6 +144,27 @@ class _DevicesDetailCardState extends State<DevicesDetailCard> {
         ],
       ),
       buttons: [],
+    );
+  }
+
+  Alert getCustomAlert(String message){
+    return Alert(
+      context: context,
+      style: alertStyle,
+      content: Column(
+        children: [
+          Text(
+            message,
+            style: TextStyle(
+                color: Color(0xFFEFEFEF), fontFamily: 'Chivo', fontSize: 18),
+          ),
+        ],
+      ),
+      buttons: [
+        DialogButton(child: Text("Ok"), onPressed: (){
+          Navigator.pop(context);
+        })
+      ],
     );
   }
 
@@ -297,21 +320,60 @@ class _DevicesDetailCardState extends State<DevicesDetailCard> {
                                     child: Column(
                                       children: [
                                         IconButton(onPressed: () async {
-                                          Map<String, dynamic> body = {
-                                            "passcode":051015,
-                                            "lock_message":"Dispositivo Bloqueado, Contactar al administrador",
-                                          };
-                                          Alert alert = getAlert();
-                                          alert.show();
-                                          await Provider.of<DeviceManagerProvider>(context, listen: false).sendAction(widget.deviceId!, "enable_lost_mode", globaldata.userId, body);
-                                          alert.dismiss();
-                                          showSnackBar(context, 'Operacion Completada!');
+                                         // if(unlockCode > 0){
+                                            Map<String, dynamic> body = {
+                                              "passcode":unlockCode,
+                                              "lock_message":"Dispositivo Bloqueado, Contactar al administrador",
+                                            };
+                                            Alert alert = getAlert();
+                                            alert.show();
+                                            await Provider.of<DeviceManagerProvider>(context, listen: false).sendAction(widget.deviceId!, "enable_lost_mode", globaldata.userId, body);
+                                            alert.dismiss();
+                                            showSnackBar(context, 'Operacion Completada!');
+                                          // }
+                                          // else{
+                                          //   Alert alert = getCustomAlert("Debe Colocar un codigo de desbloqueo");
+                                          //   alert.show();
+                                          // }
+
 
                                         }, icon: Icon(Icons.lock)),
                                         Text("Bloquear")
                                       ],
                                     ),
                                   ),
+                                  // SizedBox(width: 5),
+                                  // Container(
+                                  //   padding: EdgeInsets.all(10),
+                                  //   decoration: BoxDecoration(
+                                  //       border: Border.all(width: 1, color: globaldata.blackBackground2),
+                                  //       borderRadius: BorderRadius.all(Radius.circular(15))
+                                  //   ),
+                                  //   child: Column(
+                                  //     children: [
+                                  //       IconButton(onPressed: () async {
+                                  //         // if(unlockCode > 0){
+                                  //         Map<String, dynamic> body = {
+                                  //           "passcode":unlockCode,
+                                  //           //"lock_message":"Dispositivo Bloqueado, Contactar al administrador",
+                                  //         };
+                                  //         Alert alert = getAlert();
+                                  //         alert.show();
+                                  //         await Provider.of<DeviceManagerProvider>(context, listen: false).sendAction(widget.deviceId!, "reset_passcode", globaldata.userId, body);
+                                  //         alert.dismiss();
+                                  //         showSnackBar(context, 'Operacion Completada!');
+                                  //         // }
+                                  //         // else{
+                                  //         //   Alert alert = getCustomAlert("Debe Colocar un codigo de desbloqueo");
+                                  //         //   alert.show();
+                                  //         // }
+                                  //
+                                  //
+                                  //       }, icon: Icon(Icons.lock_person)),
+                                  //       Text("Bloqueo 2")
+                                  //     ],
+                                  //   ),
+                                  // ),
                                   SizedBox(width: 5),
                                   Container(
                                     padding: EdgeInsets.all(10),
@@ -364,6 +426,39 @@ class _DevicesDetailCardState extends State<DevicesDetailCard> {
                             ],
                           ),
                         ),
+                        // SizedBox(height: 15),
+                        // Container(
+                        //   decoration: BoxDecoration(
+                        //     color: Colors.white,
+                        //     borderRadius: BorderRadius.all(Radius.circular(10)),
+                        //   ),
+                        //   alignment: Alignment.centerLeft,
+                        //   width: 200,
+                        //   padding: EdgeInsets.all(5),
+                        //   child: Column(
+                        //     mainAxisAlignment: MainAxisAlignment.start,
+                        //     children: [
+                        //       Text("Codigo Desbloqueo"),
+                        //       TextField(
+                        //         inputFormatters: <TextInputFormatter>[
+                        //           FilteringTextInputFormatter.digitsOnly
+                        //         ],
+                        //         keyboardType: TextInputType.number,
+                        //         maxLength: 4,
+                        //         onChanged: (String? value){
+                        //           print(value);
+                        //           unlockCode = 0;
+                        //           if(value != null){
+                        //             if(value != ""){
+                        //               unlockCode = int.parse(value);
+                        //             }
+                        //           }
+                        //
+                        //         },
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),

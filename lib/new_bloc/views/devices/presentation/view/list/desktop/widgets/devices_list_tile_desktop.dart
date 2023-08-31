@@ -42,8 +42,8 @@ class _DevicesListTileDesktopState extends State<DevicesListTileDesktop> {
         return  Icon(Icons.check_circle, color: globaldata.greenColor,);
       case "Pendiente":
         return Icon(Icons.pending, color: Colors.amber,);
-      case "Cancelado":
-        return Icon(Icons.cancel, color: Colors.red,);
+      case "Bloqueado":
+        return Icon(Icons.block, color: Colors.red,);
       case "En Proceso":
         return Icon(Icons.replay_circle_filled, color: Colors.deepOrangeAccent,);
       default:
@@ -57,7 +57,7 @@ class _DevicesListTileDesktopState extends State<DevicesListTileDesktop> {
         return globaldata.greenColor;
       case "Pendiente":
         return Colors.amber;
-      case "Cancelado":
+      case "Bloqueado":
         return Colors.red;
       case "En Proceso":
         return Colors.deepOrangeAccent;
@@ -81,13 +81,14 @@ class _DevicesListTileDesktopState extends State<DevicesListTileDesktop> {
   @override
   Widget build(BuildContext context) {
     screenSize = MediaQuery.of(context).size.width;
+
     return Material(
       child: Container(
         color: globaldata.blackBackground1,
         child: AnimationLimiter(
           child: GridView.builder(
             gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-              mainAxisExtent: 350,
+              mainAxisExtent: 180,
               crossAxisCount: getGridSize(
                   MediaQuery.of(context).size.width),
             ),

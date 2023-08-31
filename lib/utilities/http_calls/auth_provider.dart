@@ -156,6 +156,8 @@ class AuthProvider {
 
     RestClient request = await AuthProvider.request("application/json;charset=UTF-8", currentToken);
     try {
+      print("deviceId: "+device_id+" actionName: "+actionName+" userId: "+user_id);
+      print(body.toString());
       response = await request.sendAction(device_id, actionName, user_id, body);
     } on DioError catch (e) {
       print({"DioError response:", e.response});
