@@ -297,12 +297,6 @@ class _DevicesDetailCardState extends State<DevicesDetailCard> {
                                           );
                                           if(!res){
                                             MapsLauncher.launchCoordinates(double.parse(mapData.data![0].latitude!), double.parse(mapData.data![0].longitude!), 'Your selection is here');
-                                            // MapData? result = await showDialog(context: context, builder: (context) => PlacePicker("AIzaSyAuHrKDWpQaSU7wuyfaJDZu4j4UKdmXAKc", localizationItem: LocalizationItem(
-                                            //   unnamedLocation: "Selected Address",),
-                                            //   displayLocation: LatLng(40.69772700, -73.52685300),
-                                            // ),).then((value) {
-                                            //   return value;
-                                            // });
                                           }
 
                                         }, icon: Icon(Icons.pin_drop)),
