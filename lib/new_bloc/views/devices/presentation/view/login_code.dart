@@ -98,11 +98,11 @@ class _VerificationScreen1State extends State<VerificationScreen1> {
           children: [
             Text(
               "Código de verificación",
-              style: theme.textTheme.headline4,
+            //  style: theme.textTheme.headline4,
             ),
             SizedBox(height: 16),
 
-            Text("Digite su código de acceso", style: theme.textTheme.headline6),
+            Text("Digite su código de acceso", ),
             Spacer(flex: 2),
             OtpTextField(
               numberOfFields: numberOfFields,
@@ -110,7 +110,7 @@ class _VerificationScreen1State extends State<VerificationScreen1> {
               focusedBorderColor: primaryColor,
               clearText: clearText,
               showFieldAsBox: true,
-              textStyle: theme.textTheme.subtitle1,
+             // textStyle: theme.textTheme.subtitle1,
               onCodeChanged: (String value) {
                 //Handle each value
               },
@@ -149,14 +149,14 @@ class _VerificationScreen1State extends State<VerificationScreen1> {
                 child: Text(
                   "Si nesecita ayuda favor contactar con el administrador",
                   textAlign: TextAlign.center,
-                  style: theme.textTheme.bodyText1,
+                 // style: theme.textTheme.bodyText1,
                 ),
               ),
             ),
             Center(
               child: Text(
                 "No tienes código?",
-                style: theme.textTheme.subtitle1,
+                //style: theme.textTheme.subtitle1,
               ),
             ),
             Spacer(flex: 3),
@@ -174,171 +174,7 @@ class _VerificationScreen1State extends State<VerificationScreen1> {
           ],
         ),
       ),
-      // floatingActionButton:
-      // FloatingActionButton(
-      //   child: Container(
-      //     width: 50,
-      //     height: 50,
-      //     child: const Icon(
-      //       Icons.add,
-      //       color: globaldata.blackBackground2,
-      //       size: 20,
-      //     ),
-      //   ),
-      //   backgroundColor: Colors.blueAccent,
-      //   onPressed: () {
-      //
-      //     showDialog(
-      //       context: context,
-      //       builder: (BuildContext context) {
-      //         return StatefulBuilder(builder: (context, setState) {
-      //           return Dialog(
-      //             shape: RoundedRectangleBorder(
-      //               borderRadius: BorderRadius.circular(20),
-      //             ),
-      //             elevation: 0,
-      //             child: Container(
-      //               padding: EdgeInsets.all(10),
-      //               height: 200,
-      //               width: 200,
-      //               child: Column(
-      //                 children: [
-      //                   Row(
-      //                     children: [
-      //                       Text("Cliente"),
-      //                       SizedBox(width: 5),
-      //                       Expanded(
-      //                         child: TextFormField(
-      //                             controller: textCustomer,
-      //                             keyboardType: TextInputType.text,
-      //                             textAlignVertical: TextAlignVertical.center,
-      //                             //field.value!,
-      //                             style: TextStyle(
-      //                               color: Colors.black,
-      //                               fontFamily: globaldata.font,
-      //                               fontSize: 14,
-      //                             ),
-      //                             decoration: InputDecoration(
-      //                                 contentPadding: EdgeInsets.only(left: 20.0),
-      //                                 enabledBorder: OutlineInputBorder(
-      //                                     borderRadius: BorderRadius.circular(15),
-      //                                     borderSide: BorderSide(width: 1, color: Colors.black)),
-      //                                 border: OutlineInputBorder(
-      //                                     borderRadius: BorderRadius.circular(15),
-      //                                     borderSide: BorderSide(width: 1, color: Colors.black)),
-      //                                 focusedBorder: OutlineInputBorder(
-      //                                     borderRadius: BorderRadius.circular(15),
-      //                                     borderSide:
-      //                                     BorderSide(width: 1, color: Colors.black12))),
-      //                             onChanged: (val) {
-      //
-      //                             }),
-      //                       ),
-      //                     ],
-      //                   ),
-      //                   Row(
-      //                     children: [
-      //                       Text("Android: "),
-      //                       Checkbox(
-      //                         value: isAndroid,
-      //                         onChanged: (value) {
-      //                           setState(() {
-      //                             isAndroid = true;
-      //                             isIos = false;
-      //                           });
-      //                         },
-      //                       ),
-      //                       SizedBox(height: 5),
-      //                       Text("IOS: "),
-      //                       Checkbox(
-      //                         value: isIos,
-      //                         onChanged: (value) {
-      //                           setState(() {
-      //                             isAndroid = false;
-      //                             isIos = true;
-      //                           });
-      //                         },
-      //                       ),
-      //                     ],
-      //                   ),
-      //                   isAndroid?Container(
-      //                     height: 30.0,
-      //                     margin: EdgeInsets.only(left: 10, right: 10, top: 5),
-      //                     padding: EdgeInsets.only(left: 20.0, right: 20.0),
-      //                     decoration: BoxDecoration(
-      //                         borderRadius: const BorderRadius.all(Radius.circular(15)),
-      //                         border: Border.all(
-      //                           color: Color(0xFFEFEFEF),
-      //                           width: 1,
-      //                         ),
-      //                         color: Color(0xFF141414)),
-      //                     child: DropdownButtonHideUnderline(
-      //                       child: DropdownButton(
-      //                         // key: ValueKey<Object>(redrawObject!),
-      //                         isExpanded: true,
-      //                         dropdownColor: Color(0xFF202020),
-      //                         value: selectedVersionAndroid,
-      //                         icon: SizedBox.shrink(),
-      //                         borderRadius: BorderRadius.all(Radius.circular(10)),
-      //                         style: const TextStyle(color: Color(0xFFEFEFEF)),
-      //                         items: versionsAndroid.map((items) {
-      //                           return DropdownMenuItem(
-      //                               value: items.toString(),
-      //                               child: Text(items.toString()));
-      //                         }).toList(),
-      //                         onChanged: (newValue) {
-      //                           selectedVersionAndroid = newValue.toString();
-      //                         },
-      //                       ),
-      //                     ),
-      //                   ):
-      //                   Container(
-      //                     height: 30.0,
-      //                     margin: EdgeInsets.only(left: 10, right: 10, top: 5),
-      //                     padding: EdgeInsets.only(left: 20.0, right: 20.0),
-      //                     decoration: BoxDecoration(
-      //                         borderRadius: const BorderRadius.all(Radius.circular(15)),
-      //                         border: Border.all(
-      //                           color: Color(0xFFEFEFEF),
-      //                           width: 1,
-      //                         ),
-      //                         color: Color(0xFF141414)),
-      //                     child: DropdownButtonHideUnderline(
-      //                       child: DropdownButton(
-      //                         // key: ValueKey<Object>(redrawObject!),
-      //                         isExpanded: true,
-      //                         dropdownColor: Color(0xFF202020),
-      //                         value: selectedVersionIos,
-      //                         icon: SizedBox.shrink(),
-      //                         borderRadius: BorderRadius.all(Radius.circular(10)),
-      //                         style: const TextStyle(color: Color(0xFFEFEFEF)),
-      //                         items: versionsIos.map((items) {
-      //                           return DropdownMenuItem(
-      //                               value: items.toString(),
-      //                               child: Text(items.toString()));
-      //                         }).toList(),
-      //                         onChanged: (newValue) {
-      //                           selectedVersionIos = newValue.toString();
-      //                         },
-      //                       ),
-      //                     ),
-      //                   ),
-      //
-      //                   SizedBox(height: 10),
-      //                   IconButton(
-      //                       onPressed: () async {
-      //                         sendMail();
-      //                       },
-      //                       icon: Icon(Icons.check))
-      //                 ],
-      //               ),
-      //             ),
-      //           );
-      //         });
-      //       },
-      //     );
-      //   },
-      // )
+
     );
   }
 }
@@ -374,14 +210,14 @@ class _VerificationScreen2State extends State<VerificationScreen2> {
           children: [
             Text(
               "Verification Code",
-              style: theme.textTheme.headline4,
+             // style: theme.textTheme.headline4,
             ),
             SizedBox(height: 16),
             Text(
               "We texted you a code",
-              style: theme.textTheme.headline6,
+              //style: theme.textTheme.headline6,
             ),
-            Text("Please enter it below", style: theme.textTheme.headline6),
+            Text("Please enter it below",),
             Spacer(flex: 2),
             OtpTextField(
               numberOfFields: 6,
@@ -400,14 +236,14 @@ class _VerificationScreen2State extends State<VerificationScreen2> {
                 child: Text(
                   "This helps us verify every user in our market place",
                   textAlign: TextAlign.center,
-                  style: theme.textTheme.bodyText1,
+                 // style: theme.textTheme.bodyText1,
                 ),
               ),
             ),
             Center(
               child: Text(
                 "Didn't get code?",
-                style: theme.textTheme.subtitle1,
+               // style: theme.textTheme.subtitle1,
               ),
             ),
             Spacer(flex: 3),
@@ -415,9 +251,9 @@ class _VerificationScreen2State extends State<VerificationScreen2> {
               onPressed: () {},
               title: "Confirm",
               color: primaryColor,
-              textStyle: theme.textTheme.subtitle1?.copyWith(
-                color: Colors.white,
-              ),
+              // textStyle: theme.textTheme.subtitle1?.copyWith(
+              //   color: Colors.white,
+              // ),
             ),
             Spacer(flex: 2),
           ],
@@ -444,7 +280,7 @@ class _VerificationScreen2State extends State<VerificationScreen2> {
 
   TextStyle? createStyle(Color color) {
     ThemeData theme = Theme.of(context);
-    return theme.textTheme.headline3?.copyWith(color: color);
+    return TextStyle(color: Colors.white);
   }
 }
 

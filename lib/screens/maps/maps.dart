@@ -83,7 +83,7 @@ class _MapsState extends State<Maps> {
                             ),
                             Text(
                               "Carlos - Iphone 7 plus",
-                              style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.white, fontSize: 14),
+                             // style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.white, fontSize: 14),
                             ),
                             TextButton.icon(
                                 onPressed: () async {
@@ -170,15 +170,15 @@ class _MapsState extends State<Maps> {
                           ),
                           Text(
                             placemarks.first.street.toString(),
-                            style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.white, fontSize: 14),
+                           // style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.white, fontSize: 14),
                           ),
                           Text(
                             placemarks.first.locality.toString(),
-                            style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.white, fontSize: 14),
+                          //  style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.white, fontSize: 14),
                           ),
                           Text(
                             placemarks.first.country.toString(),
-                            style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.white, fontSize: 14),
+                           // style: Theme.of(context).textTheme.headline6!.copyWith(color: Colors.white, fontSize: 14),
                           ),
                           TextButton.icon(
                               onPressed: () {

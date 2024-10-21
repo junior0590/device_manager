@@ -45,10 +45,10 @@ class _MyStatefulWidgetState extends State<NotificationList> with TickerProvider
   }
 
   Future<void> initialAppLaunch() async {
-    notificationAppLaunchDetails = !kIsWeb && Platform.isLinux ? null : await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
-    if (notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) {
-      selectedNotificationPayload = notificationAppLaunchDetails!.payload;
-    }
+    // notificationAppLaunchDetails = !kIsWeb && Platform.isLinux ? null : await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
+    // if (notificationAppLaunchDetails?.didNotificationLaunchApp ?? false) {
+    //   //selectedNotificationPayload = notificationAppLaunchDetails!.payload;
+    // }
   }
 
   Widget getNotificationRecords() {

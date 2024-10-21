@@ -4,9 +4,13 @@
 
 list(APPEND FLUTTER_PLUGIN_LIST
   app_links
-  connectivity_plus_windows
+  cloud_firestore
+  connectivity_plus
+  file_selector_windows
+  firebase_core
   geolocator_windows
   maps_launcher
+  permission_handler_windows
   printing
   url_launcher_windows
 )

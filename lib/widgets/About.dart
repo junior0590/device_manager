@@ -42,7 +42,7 @@ class About extends StatelessWidget { About({Key? key}) : super(key: key);
       title: Image.asset('assets/images/login.png', fit: BoxFit.cover),
       applicationVersion: 'Version {{ version }}, build #{{ buildNumber }}',
       applicationDescription: Text(
-        "Hytech Gizmo App",
+        "Device Manager",
         textAlign: TextAlign.justify,
       ),
       // applicationIcon: Container(
@@ -53,10 +53,10 @@ class About extends StatelessWidget { About({Key? key}) : super(key: key);
           title: Text("View Changelog"),
           leading: Icon(Icons.view_list, color: globaldata.greenColor),
           onTap: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => ChangeLog()));
+            // Navigator.push(
+            //     context,
+            //     MaterialPageRoute(
+            //         builder: (context) => ChangeLog()));
           },
         ),
       ],

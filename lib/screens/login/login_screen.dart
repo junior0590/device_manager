@@ -156,138 +156,20 @@ class _LoginScreenState extends State<LoginScreen> {
     // AuthProvider().loginUser('junior.henriquez@hytechgizmo.com', '12345');
   }
 
-  checkNetworkStatusOnChange() {
-    connectionType = Connectivity()
-        .onConnectivityChanged
-        .listen((ConnectivityResult result) {
-      var snackBar;
 
-      setState(() {
-        if (result.name.toString() == "wifi") {
-          connectionStatus =
-              const Icon(Icons.network_wifi, color: const Color(0xFF10FB06));
-          snackBar = SnackBar(
-              content: Row(
-                children: [
-                  connectionStatus!,
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  const Text('Wifi Connection'),
-                ],
-              ),
-              duration: Duration(seconds: 5));
-        } else if (result.name.toString() == "mobile") {
-          connectionStatus = const Icon(Icons.signal_cellular_4_bar,
-              color: const Color(0xFF10FB06));
-          snackBar = SnackBar(
-              content: Row(
-                children: [
-                  connectionStatus!,
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  const Text('Mobile Network Connection'),
-                ],
-              ),
-              duration: Duration(seconds: 5));
-        } else if (result.name.toString() == "none") {
-          connectionStatus = Icon(Icons.signal_wifi_connected_no_internet_4,
-              color: Colors.red);
-          snackBar = SnackBar(
-            content: Row(
-              children: [
-                connectionStatus!,
-                const SizedBox(
-                  width: 10,
-                ),
-                const Text('No internet Connection'),
-              ],
-            ),
-            duration: const Duration(seconds: 10),
-          );
-        }
 
-        // ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-        connectionStatusData = result.name.toString();
-      });
-    });
-  }
-
-  verifyNetworkStatusOnInit() async {
-    ConnectivityResult connectivityResult =
-        await _connectivity.checkConnectivity();
-    var snackBar;
-
-    setState(() {
-      if (connectivityResult.name.toString() == "wifi") {
-        connectionStatus = Icon(
-          Icons.network_wifi,
-          color: Color(0xFF10FB06),
-        );
-        snackBar = SnackBar(
-          content: Row(
-            children: [
-              connectionStatus!,
-              const SizedBox(
-                width: 10,
-              ),
-              const Text('Wifi Connection'),
-            ],
-          ),
-          duration: const Duration(seconds: 5),
-        );
-        connectionStatusData = connectivityResult.name.toString();
-      } else if (connectivityResult.name.toString() == "mobile") {
-        connectionStatus = const Icon(
-          Icons.signal_cellular_4_bar,
-          color: const Color(0xFF10FB06),
-        );
-        snackBar = SnackBar(
-          content: Row(
-            children: [
-              connectionStatus!,
-              const SizedBox(
-                width: 10,
-              ),
-              const Text('Mobile Network Connection'),
-            ],
-          ),
-          duration: const Duration(seconds: 5),
-        );
-        connectionStatusData = connectivityResult.name.toString();
-      } else if (connectivityResult.name.toString() == "none") {
-        connectionStatus = Icon(
-          Icons.signal_wifi_connected_no_internet_4,
-          color: Colors.red,
-        );
-        snackBar = SnackBar(
-            content: Row(
-              children: [
-                connectionStatus!,
-                const SizedBox(
-                  width: 10,
-                ),
-                const Text('No internet Connection'),
-              ],
-            ),
-            duration: const Duration(seconds: 10));
-        connectionStatusData = connectivityResult.name.toString();
-      }
-    });
-  }
 
   Future<void> initDeepLinks() async {
     print("test link");
     _appLinks = AppLinks();
 
     // Check initial link if app was in cold state (terminated)
-    final appLink = await _appLinks.getInitialAppLink();
-    if (appLink != null) {
-      print('getInitialAppLink: $appLink');
-      openAppLink(appLink);
-    }
+   // final appLink = await _appLinks.getInitialAppLink();
+   //  if (appLink != null) {
+   //    print('getInitialAppLink: $appLink');
+   //    openAppLink(appLink);
+   //  }
 
     // Handle link when app is in warm state (front or background)
     _linkSubscription = _appLinks.uriLinkStream.listen((uri) {

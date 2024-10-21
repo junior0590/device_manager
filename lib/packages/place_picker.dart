@@ -560,7 +560,7 @@ class PlacePickerState extends State<PlacePicker> {
       //final response = await http.get(url);
       List<Placemark> placemarks = await placemarkFromCoordinates(
           latLng.latitude, latLng.longitude,
-          localeIdentifier: "enUS");
+      );
       print("ping");
       globaldata.mapAddress = placemarks.first.street!;
       globaldata.mapZipCode = placemarks.first.postalCode!;

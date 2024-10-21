@@ -93,12 +93,12 @@ class DrawerMenuWidget extends StatelessWidget {
                 },
                 child: AvatarGlow(
                   glowColor: globaldata.greenColor,
-                  endRadius: 25.0,
+                //  endRadius: 25.0,
                   duration: const Duration(milliseconds: 3000),
                   repeat: true,
-                  showTwoGlows: true,
+                  //showTwoGlows: true,
                   animate: Provider.of<Notifications>(context).allNotifications!.where((element) => element.isRead == false).toList().length > 0 ? true : false,
-                  repeatPauseDuration: const Duration(milliseconds: 200),
+                 // repeatPauseDuration: const Duration(milliseconds: 200),
                   child: Badge(
                     isLabelVisible: Provider.of<Notifications>(context).allNotifications!.where((element) => element.isRead == false).toList().length > 0,
                     textColor: globaldata.whiteLetters,
