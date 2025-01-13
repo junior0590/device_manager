@@ -33,7 +33,7 @@ class _DevicesRepository implements DevicesRepository {
     )
             .compose(
               _dio.options,
-              'http://gsoftsolution.ddns.net/webApi2/api/devices',
+              'http://192.3.122.165/webApi2/api/devices',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -60,7 +60,7 @@ class _DevicesRepository implements DevicesRepository {
     )
             .compose(
               _dio.options,
-              'http://gsoftsolution.ddns.net/webApi2/api/custom/devices/GetDeviceDetail/${device_id}/${user_id}',
+              'http://192.3.122.165/webApi2/api/custom/devices/GetDeviceDetail/${device_id}/${user_id}',
               queryParameters: queryParameters,
               data: _data,
             )
