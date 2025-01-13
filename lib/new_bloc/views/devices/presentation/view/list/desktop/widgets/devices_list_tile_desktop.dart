@@ -33,10 +33,6 @@ class _DevicesListTileDesktopState extends State<DevicesListTileDesktop> {
   double downloadPercentage = 0;
   bool isDownloading = false;
   final GlobalKey<AnimatedListState> listKey = GlobalKey<AnimatedListState>();
-  //DropdownModel<ListItemData> listItem = DropdownModel<ListItemData>(
-  //   selectedValue: 0,
-  //   modelData: [],
-  // );
   List<DevicesDto>? ios = [];
   List<DevicesDto>? android = [];
   double screenSize = 450;
@@ -94,10 +90,10 @@ class _DevicesListTileDesktopState extends State<DevicesListTileDesktop> {
           child: Column(
             children: <Widget>[
               ButtonsTabBar(
-                // Customize the appearance and behavior of the tab bar
-                backgroundColor: Colors.blueAccent,
+                backgroundColor: Colors.transparent,
                 borderWidth: 2,
                 borderColor: Colors.black,
+                radius: 100,
                 labelStyle: TextStyle(
                   color: Colors.white,
                   fontSize: 18,
@@ -107,19 +103,63 @@ class _DevicesListTileDesktopState extends State<DevicesListTileDesktop> {
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                 ),
-                // Add your tabs here
+                height: 120,
+                width: 120,
                 tabs: [
-                  Tab(text: "IOS",),
-                  Tab(text: "Android")
+                  Tab(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,  // Color de fondo del círculo
+                          ),
+                          child: Center(
+                            child: Image.asset(
+                              'images/ios_logo.png',
+                              width: 60,
+                              height: 60,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Tab(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white,
+                          ),
+                          child: Center(
+                            child: Image.asset(
+                              'images/android_logo.png',
+                              width: 60,
+                              height: 60,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
+
               Expanded(
                 child: TabBarView(
                   children: [
                     if (ios!.length >0) AnimationLimiter(
                       child: GridView.builder(
                         gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-                          mainAxisExtent: 180,
+                          mainAxisExtent: 200,
                           crossAxisCount: getGridSize(
                               MediaQuery.of(context).size.width),
                         ),
@@ -203,7 +243,7 @@ class _DevicesListTileDesktopState extends State<DevicesListTileDesktop> {
                     if (android!.length >0) AnimationLimiter(
                       child: GridView.builder(
                         gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-                          mainAxisExtent: 180,
+                          mainAxisExtent: 200,
                           crossAxisCount: getGridSize(
                               MediaQuery.of(context).size.width),
                         ),

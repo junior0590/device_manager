@@ -9,7 +9,6 @@ import 'package:project/new_bloc/views/devices/presentation/view/list/desktop/wi
 import 'package:project/utilities/helpers/globaldata.dart' as globaldata;
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:project/new_bloc/core/helpers/codeTools.dart';
-import 'package:skeletons/skeletons.dart';
 import 'widgets/skeleton_task_card.dart';
 import 'widgets/devices_list_tile.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -43,12 +42,7 @@ class DevicesScreen extends StatelessWidget {
       case DataStatus.LOADING:
         return Expanded(
           flex: 10,
-          child: SkeletonListView(
-            itemCount: 6,
-            itemBuilder: (context, index) {
-              return SkeletonTaskCard();
-            },
-          ),
+          child: Center()
         );
       case DataStatus.COMPLETED:
         return Expanded(
@@ -76,8 +70,6 @@ class DevicesScreen extends StatelessWidget {
                 margin: EdgeInsets.only(top: 20, right: 10, bottom: 10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(60),
-                    gradient: LinearGradient(
-                        colors: <Color>[Color(0xFF10FB06), Color(0XFF0DC005)]),
                     shape: BoxShape.rectangle,
                     border: Border.all(
                       color: globaldata.greenLetter1,

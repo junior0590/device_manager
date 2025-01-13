@@ -90,14 +90,13 @@ dependencies:
   focused_menu: ^1.0.5
   tab_container: ^3.5.3
   animations: ^2.0.7
-  skeletons: ^0.0.3
   liquid_progress_indicator: ^0.4.0
   flutter_staggered_grid_view: ^0.7.0
   easy_localization: ^3.0.1
   logger: ^2.4.0
   stacked: ^3.0.1
   equatable: ^2.0.5
-  place_picker: ^0.10.0
+
   flutter_staggered_animations: ^1.1.1
   animated_digit: ^3.2.1
   animated_text_kit: ^4.2.2
@@ -115,7 +114,6 @@ dependencies:
   bloc: ^8.1.1
   floating_action_bubble: ^1.1.4
   device_info_plus: ^10.1.0
-  rounded_loading_button: ^2.1.0
   dio_logging_interceptor: ^1.0.1
   dio_http_cache_lts: ^0.4.1
   json_annotation: ^4.6.0
@@ -182,6 +180,8 @@ flutter:
     - assets/images/no-event.png
     - lib/new_bloc/core/data/local/json_responses/
     - assets/images/animated/animated-bell.gif
+    - assets/images/ios_logo.png
+    - assets/images/android_logo.png
 
 msix_config:
   display_name: Gizmo

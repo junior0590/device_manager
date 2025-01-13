@@ -155,7 +155,7 @@ PsegFormEntity? psegFormEntity;
 
 const String baseUrl = "https://mdm.manageengine.com";
 const String hostUrl = "https://mdm.manageengine.com";
-const String baseUrlHemaxvisoft = "http://gsoftsolution.ddns.net";
+const String baseUrlHemaxvisoft = "http://192.3.122.165";
 
 const String baseUrlGoogleCalendar =
     "https://calendar.google.com/calendar/render?action=TEMPLATE&text=";

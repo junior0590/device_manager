@@ -12,7 +12,6 @@ import 'package:project/new_bloc/views/devices/presentation/view/detail/widgets/
 import 'package:project/utilities/helpers/globaldata.dart' as globaldata;
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:project/new_bloc/core/helpers/codeTools.dart';
-import 'package:skeletons/skeletons.dart';
 
 const disableIconColor = Color(0xFF0F0F0F);
 
@@ -98,12 +97,7 @@ class _DeviceDetailScreenState extends State<DeviceDetailScreen>
       case DataStatus.LOADING:
         return Expanded(
           flex: 10,
-          child: SkeletonListView(
-            itemCount: 1,
-            itemBuilder: (context, index) {
-              return SkeletonDeviceDetailCard();
-            },
-          ),
+          child: Center()
         );
       case DataStatus.COMPLETED:
         return Expanded(

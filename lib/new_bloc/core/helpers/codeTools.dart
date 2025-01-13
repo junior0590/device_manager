@@ -720,20 +720,6 @@ void clearAndSetSortByTaskList(String fieldName, String sort) {
       .applied = true;
 }
 
-showProgressDialog(dynamic context, String msg, String messageCompleted) {
-  pd = ProgressDialog(context: context);
-  pd!.show(
-    max: 100,
-    msg: msg,
-    progressType: ProgressType.valuable,
-    backgroundColor: globaldata.blackBackground1,
-    progressValueColor: globaldata.greenColor,
-    progressBgColor: Colors.white70,
-    msgColor: Colors.white,
-    valueColor: Colors.white,
-    completed: Completed(completedMsg: messageCompleted, completionDelay: 1500),
-  );
-}
 
 updateProgressDialogMsg(String msg) {
   pd!.update(value: 0, msg: msg);

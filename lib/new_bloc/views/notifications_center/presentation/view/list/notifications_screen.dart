@@ -6,13 +6,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project/new_bloc/core/utils/extensions/constants.dart';
 import 'package:project/new_bloc/views/notifications_center/presentation/bloc/notifications_center_cubit.dart';
 import 'package:project/new_bloc/views/notifications_center/presentation/view/list/widgets/notifications_card.dart';
-import 'package:project/new_bloc/views/notifications_center/presentation/view/list/widgets/skeleton_notifications_center_card.dart';
 import 'package:project/utilities/helpers/globaldata.dart' as globaldata;
 import 'package:project/utilities/services/entity/notifications/notification_field.dart';
 import 'package:provider/provider.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
-import 'package:rounded_loading_button/rounded_loading_button.dart';
-import 'package:skeletons/skeletons.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 
@@ -27,20 +24,13 @@ class NotificationScreen extends StatelessWidget {
    int countGroup = 0;
    int selectIndex = 0;
    bool animateEnabled = false;
-   final RoundedLoadingButtonController _btnController =
-   RoundedLoadingButtonController();
 
   Widget getNotificationRecords(NotificationsCenterState state, BuildContext context) {
     switch (state.status) {
       case DataStatus.LOADING:
         return Expanded(
           flex: 10,
-          child: SkeletonListView(
-            itemCount: 12,
-            itemBuilder: (context, index) {
-              return SkeletonNotificationsCenterCard();
-            },
-          ),
+          child: Center()
         );
       case DataStatus.COMPLETED:
         return Expanded(
@@ -345,20 +335,7 @@ class NotificationScreen extends StatelessWidget {
                             SizedBox(width: 10),
                             Container(
                               margin: EdgeInsets.only(bottom: 5),
-                              child: RoundedLoadingButton(
-                                valueColor: globaldata.greenColor,
-                                color: Colors.transparent,
-                                animateOnTap: true,
-                                resetAfterDuration: true,
-                                resetDuration: Duration(seconds: 1),
-                                height: 30,
-                                width: 30,
-                                child: Icon(Icons.refresh, color: globaldata.greenColor, size: 35),
-                                controller: _btnController,
-                                onPressed: () {
-                                  context.read<NotificationsCenterCubit>().fetchNotificationsCenter();
-                                },
-                              ),
+                              child: Center()
                             ),
                             SizedBox(width: 10),
                           ],
