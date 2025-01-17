@@ -13,6 +13,7 @@ import 'package:project/new_bloc/views/devices/presentation/view/detail/device_d
 import 'package:project/utilities/helpers/globaldata.dart';
 import 'package:project/utilities/helpers/globaldata.dart' as globaldata;
 import 'package:project/utilities/http_calls/auth_provider.dart';
+import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 import '../../../../../domain/entities/devices_dto.dart';
 
@@ -36,6 +37,9 @@ class _DevicesListTileDesktopState extends State<DevicesListTileDesktop> {
   List<DevicesDto>? ios = [];
   List<DevicesDto>? android = [];
   double screenSize = 450;
+  late DeviceDataSource deviceDataSource;
+  String selectedDeviceId = "";
+  String selectedDeviceName = "";
 
   Widget getStatus(String status) {
     switch (status) {
@@ -71,6 +75,8 @@ class _DevicesListTileDesktopState extends State<DevicesListTileDesktop> {
   void initState() {
    ios = widget.state.devices!.where((element) => element.platform_type == "Iphone").toList();
    android = widget.state.devices!.where((element) => element.platform_type == "Android").toList();
+
+   deviceDataSource = DeviceDataSource(deviceData: widget.state.devices!);
     super.initState();
   }
 
@@ -82,255 +88,105 @@ class _DevicesListTileDesktopState extends State<DevicesListTileDesktop> {
   Widget build(BuildContext context) {
     screenSize = MediaQuery.of(context).size.width;
 
-    return Material(
-      child: Container(
-        color: globaldata.blackBackground1,
-        child: DefaultTabController(
-          length: 2,
-          child: Column(
-            children: <Widget>[
-              ButtonsTabBar(
-                backgroundColor: Colors.transparent,
-                borderWidth: 2,
-                borderColor: Colors.black,
-                radius: 100,
-                labelStyle: TextStyle(
-                  color: Colors.white,
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+    return Container(
+      decoration: BoxDecoration(
+        color: globaldata.blackBackground3,
+        borderRadius: BorderRadius.circular(15)
+      ),
+      margin: EdgeInsets.all(10),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(10),
+        child: SfDataGrid(
+          allowSorting: true,
+          allowFiltering: true,
+          source: deviceDataSource,
+          columnWidthMode: ColumnWidthMode.fill,
+          headerGridLinesVisibility: GridLinesVisibility.none,
+          gridLinesVisibility: GridLinesVisibility.none,
+          onCellTap: (DataGridCellTapDetails dcd){
+            if(dcd.rowColumnIndex.rowIndex > 0){
+              selectedDeviceId = deviceDataSource.effectiveRows[dcd.rowColumnIndex.rowIndex-1].getCells()[0].value.toString();
+              selectedDeviceName = deviceDataSource.effectiveRows[dcd.rowColumnIndex.rowIndex-1].getCells()[1].value.toString();
+              globaldata.deviceID = selectedDeviceId;
+              context.read<DevicesDetailCubit>().fetchDeviceDetail();
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => DeviceDetailScreen(deviceId: selectedDeviceId, announcement_id: "",
+                      name: selectedDeviceName),
                 ),
-                unselectedLabelStyle: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                ),
-                height: 120,
-                width: 120,
-                tabs: [
-                  Tab(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 100,
-                          height: 100,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,  // Color de fondo del círculo
-                          ),
-                          child: Center(
-                            child: Image.asset(
-                              'images/ios_logo.png',
-                              width: 60,
-                              height: 60,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Tab(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Container(
-                          width: 100,
-                          height: 100,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white,
-                          ),
-                          child: Center(
-                            child: Image.asset(
-                              'images/android_logo.png',
-                              width: 60,
-                              height: 60,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+              );
+            }
 
-              Expanded(
-                child: TabBarView(
-                  children: [
-                    if (ios!.length >0) AnimationLimiter(
-                      child: GridView.builder(
-                        gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-                          mainAxisExtent: 200,
-                          crossAxisCount: getGridSize(
-                              MediaQuery.of(context).size.width),
-                        ),
-                        itemCount: ios!.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return AnimationConfiguration.staggeredList(
-                            position: index,
-                            duration: const Duration(milliseconds: 500),
-                            child: SlideAnimation(
-                              horizontalOffset: 40,
-                              child: FadeInAnimation(
-                                child: Column(
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        globaldata.deviceID = ios![index].device_id!;
-                                        context.read<DevicesDetailCubit>().fetchDeviceDetail();
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => DeviceDetailScreen(deviceId: ios![index].device_id, announcement_id: ios![index].announcement_id,
-                                                name: ios![index].name),
-                                          ),
-                                        );
-                                      },
-                                      child: Container(
-                                        margin: EdgeInsets.all(10),
-                                        padding: EdgeInsets.all(10),
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(5),),
-                                        child: Column(
-                                          children: [
-                                            Text(
-                                              ios![index].name??"-",
-                                              style: Theme.of(context).textTheme.titleSmall,
-                                            ),
-                                            Divider(color: globaldata.blackBackground1, thickness: 1,),
-                                            Row(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text("Modelo: ", style: TextStyle(fontWeight: FontWeight.bold)),
-                                                Expanded(child: Text(ios![index].model??"-")),
-                                              ],
-                                            ),
-                                            Row(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text("Plataforma: ", style: TextStyle(fontWeight: FontWeight.bold)),
-                                                Expanded(child: Text(ios![index].platform_type??"-")),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                Text("Fecha: ", style: TextStyle(fontWeight: FontWeight.bold)),
-                                                Text(formatNotiList.format(
-                                                  DateTime.parse(ios![index].created_at!).toLocal(),
-                                                ),),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                Text(ios![index].status??"-", style: TextStyle(color: getColorStatus(ios![index].status??"-"), fontSize: 14)),
-                                                SizedBox(width: 5),
-                                                getStatus(ios![index].status??"-"),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(height: 10),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ) else Center(child: Text("No se encontraron registros!", style: TextStyle(color: Colors.white),),),
-                    if (android!.length >0) AnimationLimiter(
-                      child: GridView.builder(
-                        gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
-                          mainAxisExtent: 200,
-                          crossAxisCount: getGridSize(
-                              MediaQuery.of(context).size.width),
-                        ),
-                        itemCount: android!.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return AnimationConfiguration.staggeredList(
-                            position: index,
-                            duration: const Duration(milliseconds: 500),
-                            child: SlideAnimation(
-                              horizontalOffset: 40,
-                              child: FadeInAnimation(
-                                child: Column(
-                                  children: [
-                                    GestureDetector(
-                                      onTap: () {
-                                        globaldata.deviceID = android![index].device_id!;
-                                        context.read<DevicesDetailCubit>().fetchDeviceDetail();
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => DeviceDetailScreen(deviceId: android![index].device_id, announcement_id: android![index].announcement_id,
-                                                name: android![index].name),
-                                          ),
-                                        );
-                                      },
-                                      child: Container(
-                                        margin: EdgeInsets.all(10),
-                                        padding: EdgeInsets.all(10),
-                                        decoration: BoxDecoration(
-                                          color: Colors.white,
-                                          borderRadius: BorderRadius.circular(5),),
-                                        child: Column(
-                                          children: [
-                                            Text(
-                                              android![index].name??"-",
-                                              style: Theme.of(context).textTheme.titleSmall,
-                                            ),
-                                            Divider(color: globaldata.blackBackground1, thickness: 1,),
-                                            Row(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text("Modelo: ", style: TextStyle(fontWeight: FontWeight.bold)),
-                                                Expanded(child: Text(android![index].model??"-")),
-                                              ],
-                                            ),
-                                            Row(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              children: [
-                                                Text("Plataforma: ", style: TextStyle(fontWeight: FontWeight.bold)),
-                                                Expanded(child: Text(android![index].platform_type??"-")),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                Text("Fecha: ", style: TextStyle(fontWeight: FontWeight.bold)),
-                                                Text(formatNotiList.format(
-                                                  DateTime.parse(android![index].created_at!).toLocal(),
-                                                ),),
-                                              ],
-                                            ),
-                                            Row(
-                                              children: [
-                                                Text(android![index].status??"-", style: TextStyle(color: getColorStatus(android![index].status??"-"), fontSize: 14)),
-                                                SizedBox(width: 5),
-                                                getStatus(android![index].status??"-"),
-                                              ],
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                    SizedBox(height: 10),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
-                        },
-                      ),
-                    ) else Center(child:Text("No se encontraron registros!", style: TextStyle(color: Colors.white),),),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        )
+          },
+
+          columns: <GridColumn>[
+            GridColumn(
+                columnName: 'id',
+                label: Container(
+                    padding: EdgeInsets.all(16.0),
+                    alignment: Alignment.center,
+                    child: Text(
+                      'ID',
+                      style: TextStyle(color: Colors.blueAccent, fontSize: 16),
+                    ))),
+            GridColumn(
+                columnName: 'name',
+                label: Container(
+                    padding: EdgeInsets.all(8.0),
+                    alignment: Alignment.center,
+                    child: Text('Nombre', style: TextStyle(color: Colors.blueAccent, fontSize: 16), ))),
+            GridColumn(
+                columnName: 'platform',
+                label: Container(
+                    padding: EdgeInsets.all(8.0),
+                    alignment: Alignment.center,
+                    child: Text(
+                      'Plataforma',
+                      overflow: TextOverflow.ellipsis,
+                        style: TextStyle(color: Colors.blueAccent, fontSize: 16)
+                    ))),
+            GridColumn(
+                columnName: 'status',
+                label: Container(
+                    padding: EdgeInsets.all(8.0),
+                    alignment: Alignment.center,
+                    child: Text('Status', style: TextStyle(color: Colors.blueAccent, fontSize: 16)))),
+          ],
         ),
+      ),
       );
   }
 }
+
+class DeviceDataSource extends DataGridSource {
+  DeviceDataSource({required List<DevicesDto> deviceData}) {
+    _deviceData = deviceData
+        .map<DataGridRow>((e) => DataGridRow(cells: [
+      DataGridCell<String>(columnName: 'id', value: e.device_id),
+      DataGridCell<String>(columnName: 'name', value: e.name),
+      DataGridCell<String>(columnName: 'platform', value: e.platform_type),
+      DataGridCell<String>(columnName: 'status', value: e.status),
+    ]))
+        .toList();
+  }
+
+  List<DataGridRow> _deviceData = [];
+
+  @override
+  List<DataGridRow> get rows => _deviceData;
+
+  @override
+  DataGridRowAdapter buildRow(DataGridRow row) {
+    return DataGridRowAdapter(
+        cells: row.getCells().map<Widget>((e) {
+          return e.columnName=="status"?Center(child: Text(e.value.toString(), style: TextStyle(color: e.value=="Activo"?Colors.green:Colors.red, fontSize: 16),)) :Container(
+            alignment: Alignment.center,
+            padding: EdgeInsets.all(8.0),
+            child: Text(e.value.toString(), style: TextStyle(color: Colors.white),),
+          );
+        }).toList());
+  }
+}
+
+//FilledButton.tonalIcon()

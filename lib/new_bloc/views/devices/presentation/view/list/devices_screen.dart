@@ -129,11 +129,6 @@ class DevicesScreen extends StatelessWidget {
                 padding: EdgeInsets.zero,
                 decoration: BoxDecoration(
                   color: globaldata.blackBackground1,
-                  // image: DecorationImage(
-                  //   image: AssetImage("assets/images/Top.png"),
-                  //   alignment: Alignment.topCenter,
-                  //   fit: BoxFit.fill,
-                  // ),
                 ),
                 //    height: 90,
                 child: Stack(
@@ -155,7 +150,7 @@ class DevicesScreen extends StatelessWidget {
                               child: Row(
                                 children: [
                                   Text(
-                                    "Dispositivos",
+                                    "Dispositivos ("+ context.read<DevicesCubit>().devicesCopy.length.toString()+")",
                                     style: TextStyle(
                                         color: globaldata.whiteLetters2,
                                         fontWeight: FontWeight.bold,

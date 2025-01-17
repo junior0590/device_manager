@@ -121,6 +121,7 @@ dependencies:
   mailer: ^6.0.1
   google_sign_in: ^6.1.0
   buttons_tabbar: ^1.3.9
+  syncfusion_flutter_datagrid: ^28.1.39
 #  webcontent_converter2: ^0.0.7+1
 #  mapbox_gl: ^0.12.0
 

@@ -59,7 +59,7 @@ class _RestClient implements RestClient {
     )
             .compose(
               _dio.options,
-              'http://gsoftsolution.ddns.net/webApi2/api/custom/devices/sendMessage/${device_id}/${user_id}',
+              'http://192.3.122.165/webApi2/api/custom/devices/sendMessage/${device_id}/${user_id}',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -88,7 +88,7 @@ class _RestClient implements RestClient {
     )
             .compose(
               _dio.options,
-              'http://gsoftsolution.ddns.net/webApi2/api/custom/devices/PostAction/${device_id}/${action_name}/${user_id}',
+              'http://192.3.122.165/webApi2/api/custom/devices/PostAction/${device_id}/${action_name}/${user_id}',
               queryParameters: queryParameters,
               data: _data,
             )
@@ -114,7 +114,7 @@ class _RestClient implements RestClient {
     )
             .compose(
               _dio.options,
-              'http://gsoftsolution.ddns.net/webApi2/api/custom/devices/GetLocations/${device_id}/${user_id}',
+              'http://192.3.122.165/webApi2/api/custom/devices/GetLocations/${device_id}/${user_id}',
               queryParameters: queryParameters,
               data: _data,
             )

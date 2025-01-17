@@ -214,7 +214,7 @@ class _DevicesDetailCardState extends State<DevicesDetailCard> {
                                         children: [
                                           Text("Model: ", style: TextStyle(fontWeight: FontWeight.bold)),
                                           SizedBox(width: 5,),
-                                          Expanded(child: Text(widget.state.device_detail!.model_name!)),
+                                          Expanded(child: Text(widget.state.device_detail!.model_name??"")),
                                         ],
                                       ),
                                       SizedBox(height: 10),
@@ -222,7 +222,7 @@ class _DevicesDetailCardState extends State<DevicesDetailCard> {
                                         children: [
                                           Text("Device Name: ", style: TextStyle(fontWeight: FontWeight.bold)),
                                           SizedBox(width: 5,),
-                                          Text(widget.state.device_detail!.device_name!),
+                                          Text(widget.state.device_detail!.device_name??"No Data"),
                                         ],
                                       ),
                                       SizedBox(height: 10),
@@ -230,7 +230,7 @@ class _DevicesDetailCardState extends State<DevicesDetailCard> {
                                         children: [
                                           Text("OS Version: ", style: TextStyle(fontWeight: FontWeight.bold)),
                                           SizedBox(width: 5,),
-                                          Text(widget.state.device_detail!.os_version!),
+                                          Text(widget.state.device_detail!.os_version??""),
                                         ],
                                       ),
                                       SizedBox(height: 10),
@@ -238,7 +238,7 @@ class _DevicesDetailCardState extends State<DevicesDetailCard> {
                                         children: [
                                           Text("IMEI: ", style: TextStyle(fontWeight: FontWeight.bold)),
                                           SizedBox(width: 5,),
-                                          Text(widget.state.device_detail!.imei!),
+                                          Text(widget.state.device_detail!.imei??""),
                                         ],
                                       ),
                                       SizedBox(height: 10),
@@ -246,7 +246,7 @@ class _DevicesDetailCardState extends State<DevicesDetailCard> {
                                         children: [
                                           Text("Battery Level: ", style: TextStyle(fontWeight: FontWeight.bold)),
                                           SizedBox(width: 5,),
-                                          Text(widget.state.device_detail!.battery_level!),
+                                          Text(widget.state.device_detail!.battery_level??""),
                                         ],
                                       ),
                                     ],
@@ -283,19 +283,19 @@ class _DevicesDetailCardState extends State<DevicesDetailCard> {
                                     child: Column(
                                       children: [
                                         IconButton(onPressed: () async {
-                                          Alert alert = getAlert();
-                                          alert.show();
-                                          MapRecords mapData = await Provider.of<DeviceManagerProvider>(context, listen: false).getLocation(widget.deviceId!, globaldata.userId);
-                                          //await Provider.of<DeviceManagerProvider>(context, listen: false).sendAction(widget.deviceId!, "fetch_location");
-                                          log(mapData.toJson().toString());
-                                          alert.dismiss();
-                                          bool res = await openMap(
-                                            double.parse(mapData.data![0].latitude!),
-                                              double.parse(mapData.data![0].longitude!),
-                                          );
-                                          if(!res){
-                                            MapsLauncher.launchCoordinates(double.parse(mapData.data![0].latitude!), double.parse(mapData.data![0].longitude!), 'Your selection is here');
-                                          }
+                                          // Alert alert = getAlert();
+                                          // alert.show();
+                                          // MapRecords mapData = await Provider.of<DeviceManagerProvider>(context, listen: false).getLocation(widget.deviceId!, globaldata.userId);
+                                          // //await Provider.of<DeviceManagerProvider>(context, listen: false).sendAction(widget.deviceId!, "fetch_location");
+                                          // log(mapData.toJson().toString());
+                                          // alert.dismiss();
+                                          // bool res = await openMap(
+                                          //   double.parse(mapData.data![0].latitude!),
+                                          //     double.parse(mapData.data![0].longitude!),
+                                          // );
+                                          // if(!res){
+                                          //   MapsLauncher.launchCoordinates(double.parse(mapData.data![0].latitude!), double.parse(mapData.data![0].longitude!), 'Your selection is here');
+                                          // }
 
                                         }, icon: Icon(Icons.pin_drop)),
                                         Text("Localización")
